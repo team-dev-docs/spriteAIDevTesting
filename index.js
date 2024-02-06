@@ -67,8 +67,14 @@ export const sprite = {
         const dalle3 = openAiObject.images
         const response = await dalle3.generate({
             model: "dall-e-3",
-            prompt: `I NEED to test how the tool works with extremely simple prompts. DO NOT add any detail, just use it AS-IS. Generate a 24 bit character spritesheet with at least 7 frames of ${description} walking.  
-            Make sure all frames fit in the image and are the same size.
+            prompt: `I NEED to test how the tool works with extremely simple prompts. DO NOT add any detail, just use it AS-IS.  
+            Generate 6 frames of a 24-bit character of the requested character of ${description}, optimized for walking animations.
+            Other Instructions:
+            
+            -The top half of the image should be the frames and the bottom half should be a blank white background with nothing in it.
+            -Style should resemble Super Nintendo graphics.
+            -The background of the image, and frame should just be the color white, with no extra items, lines, text, or grids.
+            -The frames should be two rows with 3 columns each, so a 2 by 3 table.
             `,
             n: 1,
             size: options?.size || "1024x1024",

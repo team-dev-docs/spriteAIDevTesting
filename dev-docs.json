@@ -1,0 +1,130 @@
+{
+  "hover": true,
+  "quickDoc": {
+    "acceptedExtensions": [
+      ".js",
+      ".py"
+    ],
+    "variablesAndFunctions": {
+      "prompts": [
+        {
+          "question": "Is this a function, class, or variable",
+          "title": "Code Type",
+          "documentation": ""
+        },
+        {
+          "question": "Is this code written well?  if so Why?",
+          "title": "Quality of Code",
+          "documentation": ""
+        }
+      ]
+    }
+  },
+  "ai": {
+    "docsPath": "pages",
+    "internalTypeFilters": [
+      "function"
+    ],
+    "populateDoc": "dev-docs/populate.md",
+    "docSubFolder": "My new Documentation Content",
+    "writeTestPrompt": "yes",
+    "mappings": [
+      {
+        "files": [
+          "index.js"
+        ],
+        "folder": [],
+        "prompt": "",
+        "cloudDir": "My new Documentation Content/removeBackgroundColor"
+      },
+      {
+        "files": [
+          "index.js"
+        ],
+        "folder": [],
+        "prompt": "",
+        "cloudDir": "My new Documentation Content/removeBackgroundColor"
+      },
+      {
+        "files": [
+          "index.js"
+        ],
+        "folder": [],
+        "prompt": "",
+        "cloudDir": "My new Documentation Content/removeBackgroundColor"
+      },
+      {
+        "files": [
+          "index.js"
+        ],
+        "folder": [],
+        "prompt": "",
+        "cloudDir": "My new Documentation Content/Image Color Replacement with Sprite SDK"
+      },
+      {
+        "files": [
+          "index.js"
+        ],
+        "folder": [],
+        "prompt": "",
+        "cloudDir": "My new Documentation Content/Image Color Replacement in Sprite SDK"
+      },
+      {
+        "files": [
+          "index.js"
+        ],
+        "folder": [],
+        "prompt": "",
+        "cloudDir": "My new Documentation Content/Using image.scan() to Manipulate Pixels"
+      },
+      {
+        "files": [
+          "index.js"
+        ],
+        "folder": [],
+        "prompt": "",
+        "cloudDir": "My new Documentation Content/Encoding Images to Base64 Strings"
+      },
+      {
+        "files": [
+          "index.js"
+        ],
+        "folder": [],
+        "prompt": "",
+        "cloudDir": "My new Documentation Content/encodeImage - Encode Image File to Base64 String"
+      },
+      {
+        "files": [
+          "index.js"
+        ],
+        "folder": [],
+        "prompt": "",
+        "cloudDir": "My new Documentation Content/Encoding Images with sprite.encodeImage()"
+      },
+      {
+        "files": [
+          "index.js"
+        ],
+        "folder": [],
+        "prompt": "",
+        "cloudDir": "My new Documentation Content/getUniqueColors() Function"
+      },
+      {
+        "files": [
+          "index.js"
+        ],
+        "folder": [],
+        "prompt": "",
+        "cloudDir": "My new Documentation Content/Get Unique Colors from Image"
+      },
+      {
+        "files": [
+          "index.js"
+        ],
+        "folder": [],
+        "prompt": "",
+        "cloudDir": "My new Documentation Content/Get Unique Colors from Image"
+      }
+    ]
+  }
+}

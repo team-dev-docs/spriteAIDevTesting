@@ -40,7 +40,7 @@ function encodeImage(imagePath) {
 
 
 
-async function getUniqueColors(imagePath) {
+async function getUniqueColors(imagePath, options = {}) {
     const image = await Jimp.read(imagePath);
     const colorSet = new Set();
   
@@ -144,7 +144,29 @@ export const sprite = {
     },
     async generateHouseAsset(description, options) {
         const dalle3 = openAiObject.images
-        const response = await dalle3.generate({
+  
+        if(options.iterations) {
+          let i = 0; // initialization
+          let iterations = []
+          while (i < options.iterations) { // condition
+            console.log(i);
+            let response = await dalle3.generate({
+              model: "dall-e-3",
+              prompt: `Generate a 2D asset that I could use with a phaser JS game depitcing a (an) ${description}.
+              `,
+              n: 1,
+              size: options?.size || "1024x1024",
+            });
+            iterations.push(response)
+            i++; // update
+          }
+          
+
+          return iterations
+          
+
+        } else {
+          const response = await dalle3.generate({
             model: "dall-e-3",
             prompt: `Generate a 2D asset that I could use with a phaser JS game depitcing a (an) ${description}.
             `,
@@ -152,6 +174,8 @@ export const sprite = {
             size: options?.size || "1024x1024",
           });
           console.log(response)
+          return response
+        }
     }
 }
 

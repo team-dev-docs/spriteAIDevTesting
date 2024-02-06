@@ -8,7 +8,7 @@ import path from "path";
 
 
 
-async function removeBackgroundColor(inputPath, outputPath, targetColor, colorThreshold = 0) {
+async function removeBackgroundColor(inputPath, outputPath, targetColor, colorThreshold = 0, options = {}) {
     const image = await Jimp.read(inputPath);
 
     // Define the color you want to replace (e.g., white) or even blue, or yellow
@@ -29,7 +29,8 @@ async function removeBackgroundColor(inputPath, outputPath, targetColor, colorTh
         }
     });
 
-    await image.writeAsync(outputPath);
+   let result =  await image.writeAsync(outputPath);
+   return result
 }
 
 function encodeImage(imagePath) {

@@ -11,7 +11,7 @@ import path from "path";
 async function removeBackgroundColor(inputPath, outputPath, targetColor, colorThreshold = 0) {
     const image = await Jimp.read(inputPath);
 
-    // Define the color you want to replace (e.g., white) or even blue, or red
+    // Define the color you want to replace (e.g., white) or even blue, or green
     const colorToReplace = Jimp.cssColorToHex(targetColor); // e.g., '#FFFFFF'
 
     image.scan(0, 0, image.bitmap.width, image.bitmap.height, function (x, y, idx) {

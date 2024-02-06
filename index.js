@@ -144,7 +144,7 @@ export const sprite = {
     },
     async generateHouseAsset(description, options) {
         const dalle3 = openAiObject.images
-  
+      //adds some sutff
         if(options.iterations) {
           let i = 0; 
           let iterations = []

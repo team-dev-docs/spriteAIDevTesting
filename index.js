@@ -148,7 +148,7 @@ export const sprite = {
         if(options.iterations) {
           let i = 0; // initialization
           let iterations = []
-          while (i < options.iterations) { // condition
+          while (i < options.iterations) { 
             console.log(i);
             let response = await dalle3.generate({
               model: "dall-e-3",

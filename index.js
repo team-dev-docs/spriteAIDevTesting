@@ -146,7 +146,7 @@ export const sprite = {
         const dalle3 = openAiObject.images
   
         if(options.iterations) {
-          let i = 0; // initialization
+          let i = 0; 
           let iterations = []
           while (i < options.iterations) { 
             console.log(i);

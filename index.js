@@ -43,7 +43,7 @@ function encodeImage(imagePath) {
 async function getUniqueColors(imagePath, options = {}) {
     const image = await Jimp.read(imagePath);
     const colorSet = new Set();
-  
+    //adds stuff
     image.scan(0, 0, image.bitmap.width, image.bitmap.height, function (x, y, idx) {
       const red = this.bitmap.data[idx + 0];
       const green = this.bitmap.data[idx + 1];

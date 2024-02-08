@@ -18,6 +18,11 @@
     }
   },
   "ai": {
+    "checker_instructions": [
+      {
+        "prompt": "Make sure you evaluate if the target function in the document has any new arguements, optional arguements, and different reponses."
+      }
+    ],
     "docsPath": "pages",
     "internalTypeFilters": ["method"],
     "populateDoc": "dev-docs/populate.md",

@@ -5,6 +5,8 @@ on: [push]
 jobs:
   semantic-symbols:
     runs-on: ubuntu-latest
+    container:
+      image: haskell:8.10.1
     steps:
     - uses: actions/checkout@v2
       with:

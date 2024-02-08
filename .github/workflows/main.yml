@@ -1,0 +1,44 @@
+name: Semantic Symbols Analysis
+
+on: [push]
+
+jobs:
+  semantic-symbols:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0 # Ensures the entire git history is checked out
+
+    - name: Setup Haskell
+      uses: actions/setup-haskell@v1.1
+      with:
+        ghc-version: '8.10' # Specify the GHC version
+
+    - name: Install Semantic
+      run: |
+        git clone https://github.com/github/semantic.git
+        cd semantic
+        stack setup
+        stack install
+
+    - name: Find Changed Files
+      id: files
+      run: |
+        echo "CHANGED_FILES<<EOF" >> $GITHUB_ENV
+        git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '\.js$' >> $GITHUB_ENV
+        echo "EOF" >> $GITHUB_ENV
+
+    - name: Print Changed Files
+      run: |
+        echo "Changed JavaScript Files:"
+        echo "$CHANGED_FILES"
+
+    - name: Run Semantic Analysis on Changed Files
+      if: env.CHANGED_FILES != ''
+      run: |
+        cd semantic
+        for file in $CHANGED_FILES; do
+          echo "Generating symbols for $file"
+          semantic parse --symbols $file
+        done

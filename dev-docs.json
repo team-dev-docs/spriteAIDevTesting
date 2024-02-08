@@ -1,10 +1,7 @@
 {
   "hover": true,
   "quickDoc": {
-    "acceptedExtensions": [
-      ".js",
-      ".py"
-    ],
+    "acceptedExtensions": [".js", ".py"],
     "variablesAndFunctions": {
       "prompts": [
         {
@@ -22,57 +19,43 @@
   },
   "ai": {
     "docsPath": "pages",
-    "internalTypeFilters": [
-      "method"
-    ],
+    "internalTypeFilters": ["method"],
     "populateDoc": "dev-docs/populate.md",
     "docSubFolder": "My new Documentation Content",
     "writeTestPrompt": "yes",
     "mappings": [
       {
-        "files": [
-          "index.js"
-        ],
+        "files": ["index.js"],
         "folder": [],
         "prompt": "",
         "cloudDir": "My new Documentation Content/generateHouseAsset"
       },
       {
-        "files": [
-          "index.js"
-        ],
+        "files": ["index.js"],
         "folder": [],
         "prompt": "",
         "cloudDir": "My new Documentation Content/generateHouseAsset Function"
       },
       {
-        "files": [
-          "index.js"
-        ],
+        "files": ["index.js"],
         "folder": [],
         "prompt": "",
         "cloudDir": "My new Documentation Content/generateHouseAsset - Generate 2D House Asset Images with DALL-E 3"
       },
       {
-        "files": [
-          "index.js"
-        ],
+        "files": ["index.js"],
         "folder": [],
         "prompt": "",
         "cloudDir": "My new Documentation Content/Automatically Generate Sprite Sheets with DALL-E 3"
       },
       {
-        "files": [
-          "index.js"
-        ],
+        "files": ["index.js"],
         "folder": [],
         "prompt": "",
         "cloudDir": "My new Documentation Content/Automatically Generate Sprite Sheets"
       },
       {
-        "files": [
-          "index.js"
-        ],
+        "files": ["index.js"],
         "folder": [],
         "prompt": "",
         "cloudDir": "My new Documentation Content/Automatically Generating Sprite Sheets for Phaser Games with DALL-E 3"

@@ -21,6 +21,9 @@
     "checker_instructions": [
       {
         "prompt": "Make sure you evaluate if the target function in the document has any new Parameters, optional arguements, and different reponses."
+      },
+      {
+        "prompt": "If the 'How to use the code' section can be expanded upon or improved with more relavant examples from the new code."
       }
     ],
     "docsPath": "pages",

@@ -1,48 +1,28 @@
-name: Semantic Analysis for JavaScript
+name: Find Modified JavaScript Functions
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
-  setup-semantic:
+  find-functions:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 2 # Ensures the current and previous commits are checked out
+    - name: Check out the repository
+      uses: actions/checkout@v2
 
-    - name: Install GHC and Cabal with ghcup
+    - name: Install Tree-sitter CLI and JavaScript grammar
       run: |
-        curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
-        echo "source $HOME/.ghcup/env" >> $GITHUB_ENV
-        ghcup install ghc 8.10.1
-        ghcup set ghc 8.10.1
-        ghcup install cabal
-        cabal update
+        npm install -g tree-sitter-cli tree-sitter-javascript
 
-    - name: Clone semantic
+    - name: Find modified JavaScript files
+      id: modified-files
       run: |
-        git clone https://github.com/github/semantic.git
-        cd semantic
-        script/bootstrap
-        cabal v2-build all
+        echo "Modified files:"
+        git diff --name-only ${{ github.event.before }} ${{ github.sha }} -- '*.js'
 
-    - name: Find Modified JavaScript Files
-      id: files
+    - name: Parse and find functions in modified files
       run: |
-        echo "CHANGED_JS_FILES<<EOF" >> $GITHUB_ENV
-        git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '\.js$' >> $GITHUB_ENV
-        echo "EOF" >> $GITHUB_ENV
-
-    - name: Print Modified JavaScript Files
-      run: |
-        echo "Modified JavaScript Files:"
-        echo "$CHANGED_JS_FILES"
-
-    - name: Run semantic analysis on Modified JavaScript Files
-      if: env.CHANGED_JS_FILES != ''
-      run: |
-        cd semantic
-        for file in $CHANGED_JS_FILES; do
-          echo "Generating symbols for $file"
-          cabal v2-run semantic:semantic -- parse --json-symbols $file
+        for file in $(git diff --name-only ${{ github.event.before }} ${{ github.sha }} -- '*.js'); do
+          echo "Parsing $file"
+          tree-sitter parse "$file" --query='(function_declaration name: (identifier) @function)' --output functions.json
+          cat functions.json
         done

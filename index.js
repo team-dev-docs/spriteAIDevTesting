@@ -68,6 +68,8 @@ export const sprite = {
       if(options.iterations) {
         let i = 0; 
         let iterations = []
+        var item = "yeah bou"
+        let letsgo = "hey"
         while (i < options.iterations) {
           const openAiObject = new OpenAI();
           const dalle3 = openAiObject.images

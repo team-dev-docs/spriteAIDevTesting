@@ -64,7 +64,7 @@ async function getUniqueColors(imagePath, options = {}) {
 
 export const sprite = {
     async generateSprite(description, options = {}) {
-      //add some cool stuff
+      //add some cool stuff, try again
       if(options.iterations) {
         let i = 0; 
         let iterations = []

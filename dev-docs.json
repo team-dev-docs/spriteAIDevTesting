@@ -21,9 +21,6 @@
     "checker_instructions": [
       {
         "prompt": "Make sure you evaluate if the target function in the document has any new Parameters, optional arguements, and different reponses."
-      },
-      {
-        "prompt": "If the 'How to use the code' section can be expanded upon or improved with more relavant examples from the new code."
       }
     ],
     "docsPath": "pages",
@@ -32,36 +29,6 @@
     "docSubFolder": "My new Documentation Content",
     "writeTestPrompt": "yes",
     "mappings": [
-      {
-        "files": ["index.js"],
-        "folder": [],
-        "prompt": "",
-        "cloudDir": "My new Documentation Content/generateHouseAsset"
-      },
-      {
-        "files": ["index.js"],
-        "folder": [],
-        "prompt": "",
-        "cloudDir": "My new Documentation Content/generateHouseAsset Function"
-      },
-      {
-        "files": ["index.js"],
-        "folder": [],
-        "prompt": "",
-        "cloudDir": "My new Documentation Content/generateHouseAsset - Generate 2D House Asset Images with DALL-E 3"
-      },
-      {
-        "files": ["index.js"],
-        "folder": [],
-        "prompt": "",
-        "cloudDir": "My new Documentation Content/Automatically Generate Sprite Sheets with DALL-E 3"
-      },
-      {
-        "files": ["index.js"],
-        "folder": [],
-        "prompt": "",
-        "cloudDir": "My new Documentation Content/Automatically Generate Sprite Sheets"
-      },
       {
         "files": ["index.js"],
         "folder": [],

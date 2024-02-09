@@ -1,46 +1,48 @@
-name: Semantic Symbols Analysis
+name: Semantic Analysis for JavaScript
 
 on: [push]
 
 jobs:
-  semantic-symbols:
+  setup-semantic:
     runs-on: ubuntu-latest
-    container:
-      image: haskell:8.10.1
     steps:
     - uses: actions/checkout@v2
       with:
-        fetch-depth: 0 # Ensures the entire git history is checked out
+        fetch-depth: 2 # Ensures the current and previous commits are checked out
 
-    - name: Setup Haskell
-      uses: actions/setup-haskell@v1.1
-      with:
-        ghc-version: '8.10' # Specify the GHC version
+    - name: Install GHC and Cabal with ghcup
+      run: |
+        curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+        echo "source $HOME/.ghcup/env" >> $GITHUB_ENV
+        ghcup install ghc 8.10.1
+        ghcup set ghc 8.10.1
+        ghcup install cabal
+        cabal update
 
-    - name: Install Semantic
+    - name: Clone semantic
       run: |
         git clone https://github.com/github/semantic.git
         cd semantic
-        stack setup
-        stack install
+        script/bootstrap
+        cabal v2-build all
 
-    - name: Find Changed Files
+    - name: Find Modified JavaScript Files
       id: files
       run: |
-        echo "CHANGED_FILES<<EOF" >> $GITHUB_ENV
+        echo "CHANGED_JS_FILES<<EOF" >> $GITHUB_ENV
         git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '\.js$' >> $GITHUB_ENV
         echo "EOF" >> $GITHUB_ENV
 
-    - name: Print Changed Files
+    - name: Print Modified JavaScript Files
       run: |
-        echo "Changed JavaScript Files:"
-        echo "$CHANGED_FILES"
+        echo "Modified JavaScript Files:"
+        echo "$CHANGED_JS_FILES"
 
-    - name: Run Semantic Analysis on Changed Files
-      if: env.CHANGED_FILES != ''
+    - name: Run semantic analysis on Modified JavaScript Files
+      if: env.CHANGED_JS_FILES != ''
       run: |
         cd semantic
-        for file in $CHANGED_FILES; do
+        for file in $CHANGED_JS_FILES; do
           echo "Generating symbols for $file"
-          semantic parse --symbols $file
+          cabal v2-run semantic:semantic -- parse --json-symbols $file
         done

@@ -1,28 +1,30 @@
-name: Find JavaScript Functions
+name: Check for Updates
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**.md'
 
 jobs:
-  find-functions:
+  notify-express-app:
     runs-on: ubuntu-latest
+
     steps:
-    - name: Check out the repository
-      uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-    - name: Install Tree-sitter CLI and JavaScript grammar
-      run: |
-        npm install -g tree-sitter-cli tree-sitter-javascript
-
-    - name: Find all JavaScript files
-      id: find-files
-      run: |
-        files=$(find . -name "*.js" -not -path "./node_modules/*")
-        echo "::set-output name=js_files::$files"
-
-    - name: Parse and find functions in all JavaScript files
-      run: |
-        for file in ${{ steps.find-files.outputs.js_files }}; do
-          echo "Parsing $file"
-          tree-sitter parse "$file" --query='(function_declaration name: (identifier) @function)' --output functions.json
-          cat functions.json
-        done
+      - name: Send Update to DevDocs
+        run: |
+          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          API_KEY=${{ secrets.API_KEY }}
+          REPO_GH_PAT=${{secrets.REPO_GH_PAT}}
+          GITHUB_REPOSITORY="${{ github.repository }}"
+          GITHUB_ACTOR="${{ github.actor }}"
+          curl -X POST -H "Content-Type: application/json" \
+               -H "X-API-KEY: $API_KEY" \
+               -d '{"apiKey": "'$API_KEY'", repo_gh_pat: "'$REPO_GH_PAT'", "timestamp": "'$TIMESTAMP'", "githubRepository": "'$GITHUB_REPOSITORY'", "githubActor": "'$GITHUB_ACTOR'"}' \
+               "${{ secrets.ENDPOINT_URL }}"
+        env:
+          API_KEY: ${{ secrets.API_KEY }}

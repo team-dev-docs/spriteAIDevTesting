@@ -18,7 +18,7 @@
     }
   },
   "ai": {
-    "documentationSubject": "",
+    "documentationSubject": "This code and functions are tied to an a npm module called spriteAi.",
     "checker_instructions": [
       {
         "prompt": "Make sure you evaluate if the target function in the document has any new Parameters, optional arguements, and different reponses."

@@ -18,7 +18,7 @@
     }
   },
   "ai": {
-    "documentationSubject": "This code and functions are tied to an a npm module called spriteAi.",
+    "documentationSubject": "This code and functions are tied to an a npm module called spriteAi.  Capturing any new optional parameters to functions to document is super important.",
     "checker_instructions": [
       {
         "prompt": "Make sure you evaluate if the target function in the document has any new Parameters, optional arguements, and different reponses."

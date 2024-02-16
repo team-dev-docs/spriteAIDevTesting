@@ -24,7 +24,7 @@
         "prompt": "Make sure you evaluate if the target function in the document has any new Parameters, optional arguements, and different reponses."
       },
       {
-        "prompt": "Also can you an example fixes in poem format"
+        "prompt": "Also can you add example fixes in poem format"
       }
     ],
     "docsPath": "pages",

@@ -65,9 +65,6 @@ async function getUniqueColors(imagePath, options = {}) {
 export const sprite = {
     async generateSprite(description, options = {}) {
       //adds another option
-      if(options.stableDiffusion) {
-        return "NOT SUPPORTED YET"
-      }
       if(options.iterations) {
         let i = 0; 
         let iterations = [] 

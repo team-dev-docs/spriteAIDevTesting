@@ -65,7 +65,9 @@ async function getUniqueColors(imagePath, options = {}) {
 export const sprite = {
     async generateSprite(description, options = {}) {
       //adds another option
-      let defaultLLm = options?.model
+      if(options.stableDiffusion) {
+        return "NOT SUPPORTED YET"
+      }
       if(options.iterations) {
         let i = 0; 
         let iterations = [] 
@@ -73,7 +75,7 @@ export const sprite = {
           const openAiObject = new OpenAI();
           const dalle3 = openAiObject.images
           const response = await dalle3.generate({
-              model: defaultLLm || "dall-e-3",
+              model: "dall-e-3",
               prompt: `I NEED to test how the tool works with extremely simple prompts. DO NOT add any detail, just use it AS-IS.  
               Generate 6 frames of a 24-bit character of the requested character of ${description}, optimized for walking animations.
               Other Instructions:

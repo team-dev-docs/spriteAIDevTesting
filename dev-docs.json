@@ -22,6 +22,9 @@
     "checker_instructions": [
       {
         "prompt": "Make sure you evaluate if the target function in the document has any new Parameters, optional arguements, and different reponses."
+      },
+      {
+        "prompt": "can you return your responses and answers in a poem format"
       }
     ],
     "docsPath": "pages",

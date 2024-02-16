@@ -64,7 +64,7 @@ async function getUniqueColors(imagePath, options = {}) {
 
 export const sprite = {
     async generateSprite(description, options = {}) {
-      //tries again
+      //adds another option
       let defaultLLm = options?.model
       if(options.iterations) {
         let i = 0; 

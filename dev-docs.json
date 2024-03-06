@@ -1,7 +1,10 @@
 {
   "hover": true,
   "quickDoc": {
-    "acceptedExtensions": [".js", ".py"],
+    "acceptedExtensions": [
+      ".js",
+      ".py"
+    ],
     "variablesAndFunctions": {
       "prompts": [
         {
@@ -18,27 +21,6 @@
     }
   },
   "ai": {
-    "documentationSubject": "This code and functions are tied to an a npm module called spriteAi.  Capturing any new optional parameters to functions to document is super important.",
-    "checker_instructions": [
-      {
-        "prompt": "Make sure you evaluate if the target function in the document has any new Parameters, optional arguements, and different reponses."
-      },
-      {
-        "prompt": "can you return your responses and answers in a poem format"
-      }
-    ],
-    "docsPath": "pages",
-    "internalTypeFilters": ["method"],
-    "populateDoc": "dev-docs/populate.md",
-    "docSubFolder": "My new Documentation Content",
-    "writeTestPrompt": "yes",
-    "mappings": [
-      {
-        "files": ["index.js"],
-        "folder": [],
-        "prompt": "",
-        "cloudDir": "My new Documentation Content/Automatically Generating Sprite Sheets for Phaser Games with DALL-E 3"
-      }
-    ]
+
   }
 }

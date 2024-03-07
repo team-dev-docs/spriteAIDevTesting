@@ -9,6 +9,7 @@ import path from "path";
 
 
 async function removeBackgroundColor(inputPath, outputPath, targetColor, colorThreshold = 0, options = {}) {
+  //dsijfihdsuf
     const image = await Jimp.read(inputPath);
 
     // Define the color you want to replace (e.g., white) or even blue, or yellow
@@ -41,6 +42,7 @@ function encodeImage(imagePath) {
 
 
 async function getUniqueColors(imagePath, options = {}) {
+  //djsiufhdishfdshfhdsuifhudishfi
     const image = await Jimp.read(imagePath);
     const colorSet = new Set();
     //adds more stuff, more stufffffff
@@ -64,7 +66,7 @@ async function getUniqueColors(imagePath, options = {}) {
 
 export const sprite = {
     async generateSprite(description, options = {}) {
-//adds thins
+//adds thinskdfsopjfuidsiofdspijfpdsjf
       if(options.iterations) {
         let i = 0; 
         let iterations = [] 

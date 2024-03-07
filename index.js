@@ -9,10 +9,10 @@ import path from "path";
 
 
 async function removeBackgroundColor(inputPath, outputPath, targetColor, colorThreshold = 0, options = {}) {
-  //dsijfihdsuf
+  //whatever ok
     const image = await Jimp.read(inputPath);
 
-    // Define the color you want to replace (e.g., white) or even blue, or yellow
+    // Define the color you want to replace (e.g., white) or even blue, or yellow!
     const colorToReplace = Jimp.cssColorToHex(targetColor); // e.g., '#FFFFFF'
 
     image.scan(0, 0, image.bitmap.width, image.bitmap.height, function (x, y, idx) {
@@ -45,7 +45,7 @@ async function getUniqueColors(imagePath, options = {}) {
   //djsiufhdishfdshfhdsuifhudishfi
     const image = await Jimp.read(imagePath);
     const colorSet = new Set();
-    //adds more stuff, more stufffffff
+    //adds more stuff dude
     image.scan(0, 0, image.bitmap.width, image.bitmap.height, function (x, y, idx) {
       const red = this.bitmap.data[idx + 0];
       const green = this.bitmap.data[idx + 1];
@@ -227,7 +227,7 @@ export const sprite = {
           return {messages: jsonFrameResponse.choices[0].message, image: imageDataUrl}
       }
       
-        //   image_url = response.data.data[0].url;
+        //   image_url = response.data.data[0].url; nice!
         //   return image_url
     },
     async generateHouseAsset(description, options) {

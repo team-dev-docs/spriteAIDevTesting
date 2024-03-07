@@ -10,7 +10,7 @@
 # getUniqueColors index.js
 ## Imported Code Object
 
-The getUniqueColors async function takes an image path and options as inputs. It uses the Jimp library to read the image from the provided path. It then iterates through every pixel in the image, extracts the red, green, blue and alpha values from each one, converts those values to a single integer color representation if the pixel isn't fully transparent, and adds those color integers to a Set. This Set will only contain unique color values. The function returns an array containing all the unique colors found in the image.
+The getUniqueColors async function takes an image path and options as inputs. It uses the Jimp library to read the image from the provided path. It then iterates through every pixel in the image, extracts the red, green, blue and alpha values from each one, converts those values to a numeric color integer if the pixel isn't fully transparent, and adds each unique color integer to a Set. This Set will only contain unique color values. The function returns an array containing all the unique color integer values found in the image.
 
 # undefined index.js
 ## Imported Code Object

@@ -9,7 +9,7 @@ import path from "path";
 
 
 async function removeBackgroundColor(inputPath, outputPath, targetColor, colorThreshold = 0, options = {}) {
-  //whatever ok
+  //whatever ok nice
     const image = await Jimp.read(inputPath);
 
     // Define the color you want to replace (e.g., white) or even blue, or yellow!
@@ -45,7 +45,7 @@ async function getUniqueColors(imagePath, options = {}) {
   //djsiufhdishfdshfhdsuifhudishfi
     const image = await Jimp.read(imagePath);
     const colorSet = new Set();
-    //adds more stuff dude
+    //adds more stuff dude lol
     image.scan(0, 0, image.bitmap.width, image.bitmap.height, function (x, y, idx) {
       const red = this.bitmap.data[idx + 0];
       const green = this.bitmap.data[idx + 1];
@@ -232,7 +232,7 @@ export const sprite = {
     },
     async generateHouseAsset(description, options) {
         const dalle3 = openAiObject.images
-      //adds some stuff!!!!
+      //adds some stuff!!!! ok ok
         if(options.iterations) {
           let i = 0; 
           let iterations = []

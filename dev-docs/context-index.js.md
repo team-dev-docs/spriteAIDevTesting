@@ -16,13 +16,17 @@
 # getUniqueColors index.js
 ## Imported Code Object
 
-The getUniqueColors function takes in an imagePath pointing to an image file and an options object. It uses the Jimp library to read the image and then scans through every pixel in the image. 
+The getUniqueColors function takes in an imagePath string representing the path to an image file, and an options object. 
 
-For each pixel, it extracts the red, green, blue and alpha color values. If the alpha value is not 0 (i.e. not fully transparent), it converts the color values into an integer representation using Jimp's rgbaToInt method.
+It uses the Jimp library to read the image from the imagePath. It initializes a Set called colorSet to store unique colors. 
 
-It adds each unique color integer into a Set, which only allows unique values to be inserted. Finally, it converts the Set into an Array and returns an array containing the unique colors found in the image.
+It then scans through every pixel in the image, gets the red, green, blue and alpha values of each pixel, and if the alpha is not 0 (not fully transparent), it converts the color values to a single integer with Jimp.rgbaToInt. 
 
-So in summary, it analyzes an input image and returns an array containing the unique colors present in that image.
+It adds this color integer to the colorSet, which only stores unique values.
+
+Finally, it converts the Set to an array using Array.from and returns the array containing the unique colors found in the image.
+
+So in summary, it returns an array of integer color values representing every unique color in the input image.
 
 # undefined index.js
 ## Imported Code Object

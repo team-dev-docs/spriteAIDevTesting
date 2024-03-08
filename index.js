@@ -35,6 +35,7 @@ async function removeBackgroundColor(inputPath, outputPath, targetColor, colorTh
 }
 
 function encodeImage(imagePath) {
+  //very cool
     const image = fs.readFileSync(imagePath);
     return Buffer.from(image).toString('base64');
   }
@@ -42,7 +43,7 @@ function encodeImage(imagePath) {
 
 
 async function getUniqueColors(imagePath, options = {}) {
-  //djsiufhd hey
+  //addd some things
     const image = await Jimp.read(imagePath);
     const colorSet = new Set();
     //adds more stuff dude lol

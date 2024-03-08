@@ -39,5 +39,55 @@ The encodeImage function is well written for a few reasons:
 So in summary, this function is well-written because it is pure, focused, idiomatic, simple and probably robust. No obvious improvements come to mind from what is shown.
 
 
+---
+# getUniqueColors index.js
+## Imported Code Object
+
+The getUniqueColors function takes in an image path and options object as parameters. It uses the Jimp library to read the image from the provided path. It then initializes a JavaScript Set to track unique colors. 
+
+The function scans through every pixel in the image, gets the red, green, blue and alpha values of each pixel, and converts it to a numeric color integer value with Jimp.rgbaToInt(). 
+
+For any pixel that is not fully transparent (alpha not equal to 0), it adds the computed color integer to the Set. This allows it to aggregate all the unique colors in the image.
+
+Finally, it converts the Set into an Array and returns it, giving back an array of the unique integer color values found in the image.
+
+
+### Code Type
+
+
+getUniqueColors is a function. We can tell because:
+
+1. It is declared with the `function` keyword
+2. It has a name, `getUniqueColors`
+3. It has parameters defined in `(...)`, in this case `imagePath` and `options`
+4. It contains logic and operations within the `{...}` function body
+
+So based on these characteristics, we can determine that getUniqueColors is a function.
+
+
+### Quality of Code
+
+
+The code for getUniqueColors looks well written overall. Here are some positives:
+
+1. Uses async/await syntax cleanly for asynchronous image reading. This makes the flow easy to follow.
+
+2. Scans through every pixel of the image to find all colors. This ensures no colors are missed. 
+
+3. Converts RGBA values to an integer for easier storage in a Set. This avoids duplicate colors.
+
+4. Returns a clean Array of color integers from the Set. Good separation of concerns.
+
+Some ways it could improve:
+
+1. Add JSDoc comments explaining the method's purpose and parameters.
+
+2. Validate the input imagePath early for errors.
+
+3. Use more semantic variable names like imageData instead of just image.
+
+But overall the logic flow is clean and it achieves the goal effectively. The use of Sets and color conversion are nice techniques.
+
+
   
   

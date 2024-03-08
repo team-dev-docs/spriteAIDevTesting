@@ -18,17 +18,65 @@
 # getUniqueColors index.js
 ## Imported Code Object
 
-The getUniqueColors function takes in an imagePath string representing the path to an image file, and an options object. 
+The getUniqueColors function takes in an imagePath pointing to an image file and an options object. It uses the Jimp library to read the image and then scans through each pixel in the image. 
 
-It uses the Jimp library to read the image from the imagePath. It initializes a Set called colorSet to store unique colors. 
+For each pixel, it extracts the red, green, blue and alpha values. If the alpha value is not 0 (i.e. not fully transparent), it converts the color values to a numeric integer representation using Jimp's rgbaToInt method.
 
-It then scans through every pixel in the image, gets the red, green, blue and alpha values of each pixel, and if the alpha is not 0 (not fully transparent), it converts the color values to a single integer with Jimp.rgbaToInt. 
+It adds each unique color integer to a Set, which only stores unique values. Finally, it converts the Set to an Array and returns an array containing the unique colors found in the image.
 
-It adds this color integer to the colorSet, which only stores unique values.
+So in summary, it analyzes an input image and returns an array containing the unique colors in that image.
 
-Finally, it converts the Set to an array using Array.from and returns the array containing the unique colors found in the image.
 
-So in summary, it returns an array of integer color values representing every unique color in the input image.
+### Code Type
+
+
+getUniqueColors is a function. We can tell because:
+
+1. It is declared with the `function` keyword
+2. It has a name, `getUniqueColors`
+3. It has parameters defined in `( )` after the name
+4. It has a function body defined in `{ }` braces after the parameters
+
+So based on the typical structure of a JavaScript function, getUniqueColors matches that structure and can be identified as a function.
+
+
+### Quality of Code
+
+
+async function getUniqueColors(imagePath, options = {}) {
+
+  // Read image with Jimp
+  const image = await Jimp.read(imagePath);
+
+  // Create a Set to store unique colors
+  const colorSet = new Set();
+
+  // Loop through pixels
+  image.scan(0, 0, image.bitmap.width, image.bitmap.height, (x, y, idx) => {
+
+    // Get color components
+    const red = image.bitmap.data[idx + 0];
+    const green = image.bitmap.data[idx + 1];
+    const blue = image.bitmap.data[idx + 2];
+    const alpha = image.bitmap.data[idx + 3];
+
+    // Ignore transparent pixels
+    if (alpha !== 0) {
+
+      // Create integer representation of color  
+      const colorInt = Jimp.rgbaToInt(red, green, blue, alpha);
+
+      // Add to Set
+      colorSet.add(colorInt);
+
+    }
+
+  });
+
+  // Return unique colors as array
+  return Array.from(colorSet);
+
+}
 
 # undefined index.js
 ## Imported Code Object

@@ -42,7 +42,7 @@ function encodeImage(imagePath) {
 
 
 async function getUniqueColors(imagePath, options = {}) {
-  //djsiufhdishfdshfhdsuifhudishfi
+  //djsiufhd hey
     const image = await Jimp.read(imagePath);
     const colorSet = new Set();
     //adds more stuff dude lol
@@ -66,7 +66,7 @@ async function getUniqueColors(imagePath, options = {}) {
 
 export const sprite = {
     async generateSprite(description, options = {}) {
-//this is a test
+//this is a test!!!
       if(options.iterations) {
         let i = 0; 
         let iterations = [] 

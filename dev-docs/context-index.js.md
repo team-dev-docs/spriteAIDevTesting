@@ -7,6 +7,8 @@
   
   
   
+  
+  
 
 ---
 # getUniqueColors index.js
@@ -28,12 +30,10 @@ undefined in JavaScript refers to a value that has not been assigned or declared
 
 The removeBackgroundColor function takes in an input image path, output image path, target color to remove, a color threshold, and options. 
 
-It reads the input image, defines the target color to replace with transparency, loops through all pixels, calculates the color difference from the target color, and makes pixels transparent if they are within the color threshold.
+It reads the input image, defines the target color to replace with transparency, scans each pixel in the image, calculates the color difference between that pixel's color and the target color, and makes pixels transparent if they are within the allowed color threshold.
 
-Finally it writes out the processed image with the background color removed to the output path.
+Finally it writes out the processed image with transparency to the output path.
 
-
----
 # generateHouseAsset index.js
 ## Imported Code Object
 
@@ -54,5 +54,7 @@ Otherwise, it will just generate 1 image and return that single response.
 So in summary, it leverages DALL-E to generate game asset images based on a text description and configuration options.
 
 
+  
+  
   
   

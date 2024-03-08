@@ -12,13 +12,17 @@
 # encodeImage index.js
 ## Imported Code Object
 
-encodeImage is a function that takes an imagePath as a parameter. It reads the image file from the given path using fs.readFileSync, converts the image buffer to a base64 encoded string using Buffer.from() and toString('base64'), and returns the base64 encoded string.
+encodeImage is a function that takes an image file path as a parameter and encodes the image file into a base64 string. 
+
+It reads the image file from the given path using fs.readFileSync. The result is a Buffer containing the raw image bytes. This Buffer is then converted to a base64 string using Buffer.from() and toString('base64').
+
+So in summary, it takes an image file path, reads the image bytes, and encodes the bytes into a base64 string which can be used to embed the image in places that support base64 encoded images.
 
 
 ### Code Type
 
 
-encodeImage appears to be a function that takes an imagePath as a parameter. It reads the image file from the given path, converts it to a Buffer, encodes it as base64, and returns the base64 string.
+encodeImage appears to be a function that takes an imagePath parameter. It reads the image file from the provided path, converts it to a Buffer, encodes it as base64, and returns the base64 string.
 
 
 ### Quality of Code

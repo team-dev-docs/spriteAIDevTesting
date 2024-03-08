@@ -14,19 +14,13 @@
 # encodeImage index.js
 ## Imported Code Object
 
-encodeImage is a function that takes an image file path as a parameter and returns a base64 encoded string representation of the image data. 
-
-It uses fs.readFileSync() to read the image file from the given path into a Buffer. This Buffer contains the raw image data.
-
-It then converts this Buffer to a base64 string using Buffer.from(image).toString('base64'). 
-
-So in summary, it reads an image file and encodes the binary data to a base64 string that can be used to embed the image in text formats.
+encodeImage is a function that takes in an imagePath parameter representing the file path to an image. It reads the image file contents using fs.readFileSync(), converts the Buffer output to a base64-encoded string using Buffer.from() and toString('base64'), and returns the base64-encoded string. This allows the image data to be encoded as a string for transmission or storage, rather than as raw binary data.
 
 
 ### Code Type
 
 
-encodeImage appears to be a function that takes an imagePath parameter. It reads the image file from the given path, converts it to a Buffer, encodes the Buffer content as base64, and returns the base64 encoded string.
+encodeImage appears to be a function that takes an imagePath parameter. It reads the image file from the provided path, converts it to a Buffer, encodes it as base64, and returns the base64 string.
 
 
 ### Quality of Code
@@ -38,18 +32,18 @@ The encodeImage function is well written for a few reasons:
 
 2. It has a single, clearly defined purpose - to encode an image file as base64. The name clearly states what it does.
 
-3. It uses Node.js best practices - reading files synchronously with fs.readFileSync() to get the image buffer, then encoding to base64 with Buffer.from() and toString().
+3. It uses Node.js best practices - reading files asynchronously with fs.readFileSync, and encoding/decoding buffers with Buffer methods. This makes it efficient and idiomatic.
 
-4. The code is short and simple, using chaining to avoid extra variables and temporary state. Easy to read and understand.
+4. The implementation is short and simple, using chaining to avoid extra variables. Easy to read and understand what it's doing.
 
-5. No validation is done on inputs, so it relies on caller to pass in valid image path. Keeps this function focused.
+5. No validation on inputs, so it assumes imagePath points to a valid image file. For robustness checking params would be next improvement.
 
-Overall, it achieves the encoding goal in a straight-forward way, without unnecessary complexity. The functionality is wrapped in a reusable way for clean usage elsewhere in code.
+Overall this achieves the goal of efficiently base64 encoding an image in a clean, idiomatic way for Node.js. The simplicity and focus makes it easy to use and build on if needed.
 
 ### Code Type
 
 
-encodeImage appears to be a function that takes an imagePath parameter. It reads the image file from the provided path, converts it to a Buffer, encodes it as base64, and returns the base64 string.
+encodeImage appears to be a function that takes an imagePath as a parameter. It reads the image file from the given path, converts it to a Buffer, encodes it as base64, and returns the base64 string.
 
 
 ### Quality of Code
@@ -150,13 +144,13 @@ So in summary, this function is well-written because it is pure, focused, idioma
 # getUniqueColors index.js
 ## Imported Code Object
 
-The getUniqueColors function takes in an image path and options object as parameters. It uses the Jimp library to read the image from the provided path. It then initializes a JavaScript Set to store unique colors. 
+The getUniqueColors function takes in an image path and options object as parameters. It uses the Jimp library to read the image from the provided path. It then initializes a Set to store unique colors. 
 
-The function scans through every pixel in the image, gets the red, green, blue and alpha values of each pixel, and converts it to a numeric color integer value using Jimp's rgbaToInt method. 
+The function scans through every pixel in the image, gets the red, green, blue and alpha values of each pixel, and converts it to a numeric color integer value with Jimp.rgbaToInt(). 
 
-For any pixel that is not fully transparent (alpha not equal to 0), it adds the color integer to the Set. This ensures only unique colors get added.
+It adds the color integer to the Set if the pixel is not fully transparent (alpha !== 0). This accumulates all the unique colors in the image.
 
-Finally, it converts the Set into an Array and returns it, containing the unique colors present in the image.
+Finally, it converts the Set into an Array and returns it, containing all the unique colors found in the image.
 
 
 ### Code Type
@@ -167,51 +161,65 @@ getUniqueColors is a function. We can tell because:
 1. It is declared with the `function` keyword
 2. It has a name, `getUniqueColors`
 3. It has parameters defined in `(...)`, in this case `imagePath` and `options`
-4. It contains logic and operations within the `{...}` function body
+4. It contains logic and returns something, in this case an Array
 
-So based on these characteristics, we can determine that getUniqueColors is a function.
+So in summary, `getUniqueColors` matches the pattern of a normal JavaScript function declaration.
 
 
 ### Quality of Code
 
 
-The code looks well written overall. Here are some positives:
+async function getUniqueColors(imagePath, options = {}) {
 
-1. Uses async/await syntax which makes the asynchronous code easier to read. 
+  // Read image with Jimp
+  const image = await Jimp.read(imagePath);
 
-2. Abstracts the color extraction logic into a reusable function.
+  // Create a Set to store unique colors
+  const colorSet = new Set();
 
-3. Uses Set to efficiently collect unique colors.
+  // Iterate through pixels
+  image.scan(0, 0, image.bitmap.width, image.bitmap.height, (x, y, idx) => {
 
-4. Checks for transparent pixels to avoid including those. 
+    // Get color components
+    const red = this.bitmap.data[idx]; 
+    const green = this.bitmap.data[idx + 1];
+    const blue = this.bitmap.data[idx + 2];
+    const alpha = this.bitmap.data[idx + 3];
 
-5. Directly accesses pixel data for performance.
+    // Ignore transparent pixels
+    if(alpha !== 0) {
 
-6. Converts colors to ints for easier storage/comparisons.
+      // Create color int
+      const colorInt = Jimp.rgbaToInt(red, green, blue, alpha);
 
-7. Returns a clean Array result.
+      // Add to Set
+      colorSet.add(colorInt);
 
-Some potential improvements:
+    }
 
-- Add jsdoc comments to document the function.
-- Validate input parameters.
-- Use more semantic variable names like image instead of arbitrary names.
-- Break code into smaller reusable functions.
+  });
 
-But overall the core logic looks clean and efficient. The use of modern JavaScript features like async/await and Set makes it readable code.
+  // Return unique colors as Array
+  return Array.from(colorSet);
+
+}
 
 
 ---
 # generateSprite index.js
 ## Imported Code Object
 
-The generateSprite async function generates a sprite image based on a text description and options. It uses the OpenAI API and Dall-E model to generate a sprite image with 6 frames optimized for walking animations in a Super Nintendo style. 
+The generateSprite async function generates a sprite image based on a text description and options. It uses the OpenAI DALL-E API to generate a sprite image with 6 frames optimized for walking animations in a Super Nintendo style. 
 
-It accepts a description string to use in the Dall-E prompt to generate the image. The options allow setting iterations to generate multiple images, image size, and whether to save the image.
+It accepts a description string to include in the DALL-E prompt to generate the image. It also accepts options like number of iterations and image size.
 
-The function handles calling the OpenAI API, retrieving the generated image, converting and preparing it, and sending it back to the OpenAI API to extract the sprite frame width and height using a vision model.
+The function handles calling the DALL-E API, downloading the generated image, converting it to grayscale and base64 encoding it.
 
-The output is an object containing the extracted frame width/height and the generated sprite image data URI. If iterations is set, it will instead output an array of these objects.
+It then passes the image to the GPT-4 vision API to extract the frameWidth and frameHeight for using it in a spritesheet. This data is returned along with the base64 encoded image.
+
+If iterations is passed in the options, it will generate multiple images and return an array of the results.
+
+So in summary, it leverages AI to generate and process a sprite image from a text description.
 
 
 ### Code Type
@@ -239,16 +247,36 @@ async generateSprite(description, options = {}) {
   }
 
   const processImage = async (image) => {
-    // download, process and extract frames
+    // download, convert to buffer, etc
+
+    return {
+      buffer: imageBuffer,
+      base64: base64Image,
+    };
   }
 
-  const image = await generateImage();
-  const frames = await processImage(image);
+  const getFrameData = async (image) => {
+    // call AI to get frame data
+
+    return {
+      frameWidth: 100, 
+      frameHeight: 100
+    };
+  }
+
+  let image;
 
   if(options.iterations) {
     // handle iterations
   } else {
-    // return single image
+    image = await generateImage();
+    image = await processImage(image);
+    const frames = await getFrameData(image);
+    
+    return {
+      frames,
+      image: image.base64
+    };
   }
 
 }

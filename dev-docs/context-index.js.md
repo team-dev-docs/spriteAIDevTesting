@@ -12,13 +12,17 @@
 # encodeImage index.js
 ## Imported Code Object
 
-encodeImage is a function that takes an imagePath as a parameter. It reads the image file from the given path using fs.readFileSync, converts the image buffer to a base64 encoded string using Buffer.from() and toString('base64'), and returns the base64 encoded string.
+encodeImage is a function that takes an image file path as a parameter and encodes the image file into a base64 string. 
+
+It reads the image file from the given path using fs.readFileSync. The result is a Buffer containing the raw image bytes. This Buffer is then converted to a base64 string using Buffer.from() and toString('base64').
+
+So in summary, it takes an image file path, reads the image bytes, and encodes the bytes into a base64 string which can be used to embed the image in places that support base64 encoded images.
 
 
 ### Code Type
 
 
-encodeImage appears to be a function that takes an imagePath as a parameter. It reads the image file from the given path, converts it to a Buffer, encodes it as base64, and returns the base64 string.
+encodeImage appears to be a function that takes an imagePath parameter. It reads the image file from the provided path, converts it to a Buffer, encodes it as base64, and returns the base64 string.
 
 
 ### Quality of Code
@@ -117,13 +121,7 @@ So in summary, this function is well-written because it is pure, focused, idioma
 # getUniqueColors index.js
 ## Imported Code Object
 
-The getUniqueColors function takes in an image path and options object as parameters. It uses the Jimp library to read the image from the provided path. It then initializes a Set to store unique colors. 
-
-The function scans through every pixel in the image, gets the red, green, blue and alpha values of each pixel, and converts it to a numeric color integer value using Jimp's rgbaToInt method. 
-
-For any pixel that is not fully transparent (alpha not equal to 0), it adds the color integer to the Set. This ensures only unique colors get added.
-
-Finally, it converts the Set to an Array and returns it, containing the unique colors present in the image.
+The getUniqueColors async function takes an image path and options as inputs. It uses the Jimp library to read the image from the provided path. It then iterates through every pixel in the image, extracts the color values (RGB + alpha channel) of each pixel, converts those values to an integer, and adds that integer to a Set. Sets only contain unique values, so it is collecting the unique colors in the image. Finally, it converts the Set into an Array and returns it, containing integers representing all the unique colors in the provided image.
 
 
 ### Code Type
@@ -132,11 +130,11 @@ Finally, it converts the Set to an Array and returns it, containing the unique c
 getUniqueColors is a function. We can tell because:
 
 1. It is declared with the `function` keyword
-2. It has a name `getUniqueColors`
-3. It has parameters defined in `(imagePath, options = {})`
-4. It has a function body enclosed in `{ }` brackets that contains the logic
+2. It has a name, `getUniqueColors`
+3. It has parameters defined in `(...)`, in this case `imagePath` and `options`
+4. It contains logic and returns a value
 
-So in summary, getUniqueColors meets all the criteria for being a function in JavaScript.
+So in summary, getUniqueColors is declared as a reusable function that takes arguments, executes logic, and returns a value.
 
 
 ### Quality of Code
@@ -144,27 +142,32 @@ So in summary, getUniqueColors meets all the criteria for being a function in Ja
 
 The code looks well written overall. Here are some positives:
 
-1. Uses async/await syntax which makes the asynchronous code easier to read. 
+1. Uses async/await syntax for asynchronous code which makes it easier to read and reason about.
 
-2. Abstracts the color extraction logic into a reusable function. 
+2. Abstracts the core logic of getting unique colors into a reusable function. 
 
 3. Uses Set to efficiently collect unique values.
 
-4. Scans the image pixel-by-pixel to extract colors.
+4. Scans the image pixel-by-pixel to collect colors.
 
-5. Checks for transparent pixels to avoid including those. 
+5. Checks for alpha transparency before collecting colors.
 
-6. Converts RGBA values to an integer representation for uniqueness.
+6. Converts color components into integers for easier comparison.
 
-7. Returns a clean Array result.
+7. Returns a clean Array of color integers.
 
-Some potential improvements:
+Some ways it could improve:
 
-- Add JSDoc comments to document the function.
-- Validate inputs and handle errors.
-- Support different color spaces besides RGBA.
+1. Add JSDoc comments to document the function.
 
-But overall this is clean code with good practices that is easy to understand and reuse.
+2. Validate input parameters.
+
+3. Use more semantic variable names like imageData instead of this.
+
+4. Export the function to reuse across files.
+
+But overall it uses good practices for readability, reusability and performance.
+
 
 
   

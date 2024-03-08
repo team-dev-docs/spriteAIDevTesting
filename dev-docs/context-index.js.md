@@ -43,24 +43,14 @@ Finally it writes out the processed image with transparency to the output path.
 # generateHouseAsset index.js
 ## Imported Code Object
 
-The generateHouseAsset async function takes in a description string and an options object as parameters. 
+The generateHouseAsset async function takes in a description string and an options object as parameters. It uses the OpenAI images API to generate image assets using DALL-E 3. 
 
-It uses the OpenAI images API (dalle3) to generate 2D image assets that could be used in a Phaser JS game.
+If the options object contains an iterations property, it will generate multiple images by looping that many times. On each loop, it prompts DALL-E with the description and some additional formatting. The responses are collected in an array and returned.
 
-The description string is used to prompt DALL-E what type of asset to generate.
+If there is no iterations property, it will just generate a single image asset using the description prompt and return that response.
 
-The options object can contain:
-- iterations - number of images to generate 
-- size - size of the generated images
-
-If iterations is provided, it will generate that number of images and return an array of responses.
-
-Otherwise, it will just generate 1 image and return that single response.
-
-So in summary, it leverages DALL-E to generate game asset images based on a text description and configuration options.
+So in summary, it leverages DALL-E 3 to generate one or more 2D image assets based on a text description and some configurable options.
 
 
-  
-  
   
   

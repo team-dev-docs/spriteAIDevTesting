@@ -21,6 +21,13 @@
     }
   },
   "ai": {
-
+    "mappings": [
+      {
+        "files": ["index.js"],
+        "folder": [],
+        "prompt": "",
+        "cloudDir": "My new Documentation Content/Automatically Generating Sprite Sheets for Phaser Games with DALL-E 3"
+      }
+    ]
   }
 }

@@ -1,6 +1,8 @@
 
   
   
+  
+  
 
 ---
 # removeBackgroundColor index.js
@@ -97,8 +99,52 @@ I would not change anything in this implementation. It is concise, efficient, an
 # getUniqueColors index.js
 ## Imported Code Object
 
-The getUniqueColors function asynchronously reads an image from the provided imagePath, scans through all the pixels in the image, extracts the RGBA color values from each pixel, converts the color values to an integer representation, adds each unique color integer to a Set to get the unique colors, and returns an array of the unique color integers found in the image.
+The getUniqueColors function asynchronously reads an image from the provided imagePath, scans through all the pixels in the image, extracts the RGBA color values from each pixel, converts the color values to an integer representation, adds each unique color integer to a Set to de-duplicate colors, and finally returns an array containing all the unique colors found in the image.
 
+
+### Code Type
+
+
+getUniqueColors is a function. We can tell because:
+
+1. It is declared with the `function` keyword
+2. It has a name, `getUniqueColors`
+3. It has parameters defined in `(...)`, in this case `imagePath` and `options`
+4. It contains logic and returns a value
+
+So in summary, getUniqueColors is declared as a reusable function that takes in parameters, executes logic, and returns a value.
+
+
+### Quality of Code
+
+
+async function getUniqueColors(imagePath, options = {}) {
+
+  const image = await Jimp.read(imagePath);
+  
+  const colors = new Set();
+
+  for (let y = 0; y < image.bitmap.height; y++) {
+    for (let x = 0; x < image.bitmap.width; x++) {
+    
+      const idx = (x + y * image.bitmap.width) * 4;
+      
+      const red = image.bitmap.data[idx];
+      const green = image.bitmap.data[idx + 1];
+      const blue = image.bitmap.data[idx + 2];
+      const alpha = image.bitmap.data[idx + 3];
+      
+      if (alpha !== 0) {
+        const color = Jimp.rgbaToInt(red, green, blue, alpha);
+        colors.add(color);
+      }
+      
+    }
+  }
+
+  return Array.from(colors);
+
+}
 
 ### Code Type
 
@@ -145,5 +191,7 @@ async function getUniqueColors(imagePath, options = {}) {
 }
 
 
+  
+  
   
   

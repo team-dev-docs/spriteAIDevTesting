@@ -9,7 +9,7 @@
       "prompts": [
         {
           "question": "If this code requires arguements or parameters can you provide a sample arguements example and a code example of how to use the code.",
-          "title": "Sample Parameters For Code",
+          "title": "Sample Parameters For Code Feature Fridays",
           "documentation": ""
         }
       ]

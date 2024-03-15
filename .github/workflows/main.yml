@@ -22,7 +22,7 @@ jobs:
       - name: Send Update to DevDocs
         run: |
           API_KEY=${{ secrets.API_KEY }}
-          ISSUE_BODY=${{ github.event.issue.body }}
+          ISSUE_BODY="${{ github.event.issue.body }}"
           REPO_GH_PAT=${{secrets.REPO_GH_PAT}}
           GITHUB_REPOSITORY="${{ github.repository }}"
           GITHUB_ACTOR="${{ github.actor }}"

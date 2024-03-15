@@ -8,13 +8,8 @@
     "variablesAndFunctions": {
       "prompts": [
         {
-          "question": "Is this a function, class, or variable",
-          "title": "Code Type",
-          "documentation": ""
-        },
-        {
-          "question": "Is this code written well?  if so Why?",
-          "title": "Quality of Code",
+          "question": "If this code requires arguements or parameters can you provide a sample arguements example and a code example of how to use the code.",
+          "title": "Sample Parameters",
           "documentation": ""
         }
       ]

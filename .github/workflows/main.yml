@@ -21,6 +21,8 @@ jobs:
 
       - name: Send Update to DevDocs
         run: |
+          API_KEY=${{ secrets.API_KEY }}
+          REPO_GH_PAT=${{secrets.REPO_GH_PAT}}
           GITHUB_REPOSITORY="${{ github.repository }}"
           GITHUB_ACTOR="${{ github.actor }}"
           curl -X POST -H "Content-Type: application/json" \

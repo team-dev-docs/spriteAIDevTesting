@@ -1,33 +1,20 @@
 {
-  "hover": true,
   "quickDoc": {
-    "acceptedExtensions": [
-      ".js",
-      ".py"
-    ],
     "variablesAndFunctions": {
       "prompts": [
         {
-          "question": "Is this a function, class, or variable",
-          "title": "Code Type",
-          "documentation": ""
-        },
-        {
-          "question": "Is this code written well?  if so Why?",
-          "title": "Quality of Code",
-          "documentation": ""
+          "question": "In a brief sentence, does this function use any third party libaries",
+          "title": "Third Party Libaries"
         }
       ]
     }
   },
   "ai": {
-    "mappings": [
-      {
-        "files": ["index.js"],
-        "folder": [],
-        "prompt": "",
-        "cloudDir": "My new Documentation Content/Automatically Generating Sprite Sheets for Phaser Games with DALL-E 3"
-      }
+    "populateDoc": "dev-docs/populate.md",
+    "internalTypeFilters": [
+        "class",
+        "method",
+        "function"
     ]
   }
 }

@@ -3,8 +3,14 @@
     "variablesAndFunctions": {
       "prompts": [
         {
+<<<<<<< HEAD
           "question": "In a brief sentence, does this function use any third party libaries",
           "title": "Third Party Libaries"
+=======
+          "question": "If this code requires arguements or parameters can you provide a sample arguements example and a code example of how to use the code.",
+          "title": "Sample Parameters For Code Feature Fridays",
+          "documentation": ""
+>>>>>>> 287e35e0eb7a2bfe657797c885cc011cf730db77
         }
       ]
     }

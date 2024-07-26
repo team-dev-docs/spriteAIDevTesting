@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const Jimp = require('jimp');
-const removeBackgroundColor = require('./your-file').removeBackgroundColor;
+const removeBackgroundColor = require('./index').removeBackgroundColor;
 
 describe('removeBackgroundColor', () => {
   const inputPath = path.join(__dirname, 'test-assets', 'input.png');

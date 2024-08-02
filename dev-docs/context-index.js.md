@@ -44,19 +44,21 @@ It's important to add input validation, use asynchronous operations, implement p
 In this code snippet, `getUniqueColors` is an asynchronous function that takes an image file path as input and returns an array of unique colors found in the image. Here's a concise explanation of what it does:
 
 1. It reads the image file using the Jimp library.
-2. It scans every pixel of the image.
-3. For each non-transparent pixel, it extracts the RGBA color values.
+2. It scans through every pixel of the image.
+3. For each non-transparent pixel, it extracts the RGBA values.
 4. It converts the RGBA values to an integer representation of the color.
-5. It adds each unique color (as an integer) to a Set to eliminate duplicates.
-6. Finally, it returns an array of all unique colors found in the image.
+5. It adds this color integer to a Set, which automatically ensures uniqueness.
+6. Finally, it converts the Set of unique colors back to an array and returns it.
 
-The function essentially analyzes an image and provides a list of all distinct colors present in it, ignoring fully transparent pixels.
+The function effectively creates a list of all distinct colors present in the image, ignoring fully transparent pixels.
 
 ### Third Party Libaries
 
 Yes, this function uses the third-party library Jimp (JavaScript Image Manipulation Program) for reading and processing the image.
 
-  
-  
+### Security Issues
+
+In a brief sentence, potential security issues could arise from processing untrusted image files, as maliciously crafted images might exploit vulnerabilities in the image processing library (Jimp) or consume excessive resources.
+
   
   

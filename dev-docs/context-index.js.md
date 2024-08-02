@@ -44,15 +44,18 @@ No, this function does not use any third-party APIs or libraries; it only uses t
 ## Imported Code Object
 In this code snippet, `getUniqueColors` is an asynchronous function that takes an image file path as input and returns an array of unique colors found in the image. Here's a concise explanation of what it does:
 
-1. It reads the image file using the Jimp library.
-2. It scans through each pixel of the image.
-3. For each non-transparent pixel, it extracts the RGBA color values.
+1. It reads the image file using Jimp library.
+2. It scans through every pixel of the image.
+3. For each non-transparent pixel, it extracts the RGBA values.
 4. It converts the RGBA values to an integer representation of the color.
-5. It adds each unique color (as an integer) to a Set to eliminate duplicates.
-6. Finally, it returns an array of all unique colors found in the image.
+5. It adds this color integer to a Set to ensure uniqueness.
+6. Finally, it returns an array of all unique color integers found in the image.
 
-The function effectively analyzes an image and provides a list of all distinct colors used in that image, ignoring fully transparent pixels.
+This function is useful for analyzing the color composition of an image and identifying the distinct colors used within it.
 
+### Third Party Libaries
+
+Yes, this function uses the third-party library Jimp (JavaScript Image Manipulation Program) for reading and processing the image.
 ### Third Party Libaries
 
 Yes, this function uses the third-party library Jimp (JavaScript Image Manipulation Program) for reading and processing the image.

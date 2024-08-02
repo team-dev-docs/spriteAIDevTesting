@@ -46,7 +46,7 @@ function encodeImage(imagePath) {
 
 
 async function getUniqueColors(imagePath, options = {}) {
-  //addd some things test test test test
+  //addd some things test test test test test
     const image = await Jimp.read(imagePath);
     const colorSet = new Set();
     //adds more stuff dude lol

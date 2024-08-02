@@ -5,6 +5,10 @@
         {
           "question": "In a brief sentence, does this function use any third party APIs or libaries",
           "title": "Third Party Libaries"
+        },
+        {
+          "question": "In a brief sentence, are there any other security issues?",
+          "title": "Security Issues"
         }
       ]
     }

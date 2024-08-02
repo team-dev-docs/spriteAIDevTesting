@@ -65,16 +65,19 @@ Yes, this function uses the third-party library Jimp (JavaScript Image Manipulat
 ---
 # encodeImage index.js
 ## Imported Code Object
-Certainly! Here's a concise explanation of the `encodeImage` function in the given code snippet:
+Certainly! Here's a concise explanation of the `encodeImage` function in the provided code snippet:
 
-The `encodeImage` function takes an image file path as input and converts the image into a Base64-encoded string. Here's what it does:
+The `encodeImage` function takes an image file path as input and performs the following steps:
 
 1. It reads the contents of the image file using `fs.readFileSync()`.
-2. It creates a Buffer from the image data.
-3. It converts the Buffer to a Base64-encoded string using `toString('base64')`.
+2. It creates a Buffer object from the file contents.
+3. It converts the Buffer to a base64-encoded string representation of the image.
 
-This Base64 encoding allows the image data to be represented as a text string, which can be useful for transmitting images over text-based protocols or storing them in databases that don't support binary data directly.
+The purpose of this function is to convert an image file into a base64-encoded string, which can be useful for various purposes such as embedding images in HTML or sending image data over the network in a text-based format.
 
+### Third Party Libaries
+
+No, this function does not use any third-party APIs or libraries; it only uses Node.js built-in modules (fs and Buffer) to read an image file and encode it to base64.
 ### Third Party Libaries
 
 No, this function does not use any third-party APIs or libraries; it only uses Node.js built-in modules (fs and Buffer) to read an image file and encode it to base64.

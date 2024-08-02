@@ -17,6 +17,8 @@
   
   
   
+  
+  
 
 ---
 # encodeImage index.js
@@ -30,8 +32,11 @@ The `encodeImage` function takes an image file path as input and performs the fo
 3. It then encodes the Buffer into a base64 string representation.
 4. Finally, it returns the base64-encoded string of the image.
 
-This function is commonly used to convert image files into a format that can be easily transmitted or stored as text, such as in JSON payloads or databases that don't support binary data directly.
+This function is commonly used to convert image files into a format that can be easily transmitted or stored as text, such as when sending images over APIs or storing them in databases that don't support binary data directly.
 
+### Third Party Libaries
+
+No, this function does not use any third-party APIs or libraries; it only uses the built-in Node.js modules 'fs' and 'Buffer' to read and encode the image file.
 ### Third Party Libaries
 
 No, this function does not use any third-party APIs or libraries; it only uses Node.js built-in modules (fs and Buffer) to read an image file and encode it to base64.
@@ -102,6 +107,8 @@ Yes, this function uses the third-party library Jimp (JavaScript Image Manipulat
 
 Yes, this function uses the third-party library Jimp (JavaScript Image Manipulation Program) for reading and processing the image.
 
+  
+  
   
   
   

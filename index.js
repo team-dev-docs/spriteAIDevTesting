@@ -13,8 +13,8 @@ import path from "path";
 
 async function removeBackgroundColor(inputPath, outputPath, targetColor, colorThreshold = 0, options = {}) {
   //yeah so coolllllldiosjfgiodjgjiohoihdsfgdfssadfdsfdsfdfsdfdsf
-  //kdsoijfiodjsiofdsfdsfsadaskjhuigui
-    const image = await Jimp.read(inputPath);
+  //kdsoijfiodjsiofdsfdsfsadaskjhuiguifdsafdsa
+  const image = await Jimp.read(inputPath);
 
     // Define the color you want to replace (e.g., white) or even blue, or yellow!
     const colorToReplace = Jimp.cssColorToHex(targetColor); // e.g., '#FFFFFF'
@@ -62,7 +62,7 @@ async function getUniqueColors(imagePath, options = {}) {
         colorSet.add(colorInt);
       }
     });
-  
+
     return Array.from(colorSet);
   }
 
@@ -73,17 +73,17 @@ export const sprite = {
     async generateSprite(description, options = {}) {
       // for feature friday purposes!!!
       if(options.iterations) {
-        let i = 0; 
-        let iterations = [] 
+        let i = 0;
+        let iterations = []
         while (i < options.iterations) {
           const openAiObject = new OpenAI();
           const dalle3 = openAiObject.images
           const response = await dalle3.generate({
               model: "dall-e-3",
-              prompt: `I NEED to test how the tool works with extremely simple prompts. DO NOT add any detail, just use it AS-IS.  
+              prompt: `I NEED to test how the tool works with extremely simple prompts. DO NOT add any detail, just use it AS-IS.
               Generate 6 frames of a 24-bit character of the requested character of ${description}, optimized for walking animations.
               Other Instructions:
-              
+
               -The top half of the image should be the frames and the bottom half should be a blank white background with nothing in it.
               -Style should resemble Super Nintendo graphics.
               -The background of the image, and frame should just be the color white, with no extra items, lines, text, or grids.
@@ -93,8 +93,8 @@ export const sprite = {
               size: options?.size || "1024x1024",
             });
             console.log(response)
-  
-    
+
+
           //   console.log("this is the result", result.choices)
             console.log(response.data[0])
             const res = await axios.get(response.data[0].url, { responseType: 'arraybuffer' });
@@ -109,7 +109,7 @@ export const sprite = {
           }
           let grayImageBuffer = await sharp(imgBuffer).ensureAlpha().greyscale().toBuffer()
           let base64Image = grayImageBuffer.toString('base64');
-  
+
           // If you need a data URL, you can prepend the appropriate prefix
           let imageDataUrl = `data:image/jpeg;base64,${base64Image}`;
           // const base64Image = encodeImage("./test.png");
@@ -121,9 +121,9 @@ export const sprite = {
                   role: "user",
                   content: [
                     { type: "text", text: `For this 1024x1024 image, what would be the frameWidth and frameHeight if I was to use this image as a spritesheet for this phaser js function:
-                    
+
                     this.load.spritesheet('test', path to png, { frameWidth: 115, frameHeight: 380 });
-                    ` 
+                    `
                   },
                     {
                       type: "image_url",
@@ -147,9 +147,9 @@ export const sprite = {
                 },
               ],
             });
-  
-  
-     
+
+
+
             iterations.push({messages: jsonFrameResponse.choices[0].message, image: imageDataUrl})
 
         }
@@ -159,10 +159,10 @@ export const sprite = {
         const dalle3 = openAiObject.images
         const response = await dalle3.generate({
             model: "dall-e-3",
-            prompt: `I NEED to test how the tool works with extremely simple prompts. DO NOT add any detail, just use it AS-IS.  
+            prompt: `I NEED to test how the tool works with extremely simple prompts. DO NOT add any detail, just use it AS-IS.
             Generate 6 frames of a 24-bit character of the requested character of ${description}, optimized for walking animations.
             Other Instructions:
-            
+
             -The top half of the image should be the frames and the bottom half should be a blank white background with nothing in it.
             -Style should resemble Super Nintendo graphics.
             -The background of the image, and frame should just be the color white, with no extra items, lines, text, or grids.
@@ -173,7 +173,7 @@ export const sprite = {
           });
           console.log(response)
 
-  
+
         //   console.log("this is the result", result.choices)
           console.log(response.data[0])
           const res = await axios.get(response.data[0].url, { responseType: 'arraybuffer' });
@@ -200,9 +200,9 @@ export const sprite = {
                 role: "user",
                 content: [
                   { type: "text", text: `For this 1024x1024 image, what would be the frameWidth and frameHeight if I was to use this image as a spritesheet for this phaser js function:
-                  
+
                   this.load.spritesheet('test', path to png, { frameWidth: 115, frameHeight: 380 });
-                  ` 
+                  `
                 },
                   {
                     type: "image_url",
@@ -228,10 +228,10 @@ export const sprite = {
           });
 
 
-   
+
           return {messages: jsonFrameResponse.choices[0].message, image: imageDataUrl}
       }
-      
+
         //   image_url = response.data.data[0].url; nice!
         //   return image_url
     },
@@ -239,9 +239,9 @@ export const sprite = {
         const dalle3 = openAiObject.images
       //adds some stuff!!!! ok ok
         if(options.iterations) {
-          let i = 0; 
+          let i = 0;
           let iterations = []
-          while (i < options.iterations) { 
+          while (i < options.iterations) {
             console.log(i);
             let response = await dalle3.generate({
               model: "dall-e-3",
@@ -253,10 +253,10 @@ export const sprite = {
             iterations.push(response)
             i++; // update
           }
-          
+
 
           return iterations
-          
+
 
         } else {
           const response = await dalle3.generate({
@@ -271,6 +271,3 @@ export const sprite = {
         }
     }
 }
-
-
-

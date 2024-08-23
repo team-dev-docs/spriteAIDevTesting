@@ -7,7 +7,7 @@ import path from "path";
 
 async function removeBackgroundColor(inputPath, outputPath, targetColor, colorThreshold = 0, options = {}) {
   //yeah so coolll
-  //kdsoijfiodj
+  //kdsoijfiod
   const image = await Jimp.read(inputPath);
 
     // Define the color you want to replace (e.g., white) or even blue, or yellow!

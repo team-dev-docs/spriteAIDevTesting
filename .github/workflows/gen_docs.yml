@@ -26,13 +26,13 @@ jobs:
           #      -H "X-API-KEY: $API_KEY" \
           #      -d '{"apiKey": "'$API_KEY'", "repo_gh_pat": "'$REPO_GH_PAT'", "githubRepository": "'$GITHUB_REPOSITORY'", "default_time": 50}' \
           #      "${{ secrets.GENERATE_ENDPOINT_URL }}"
-          curl --location "${{ secrets.GENERATE_ENDPOINT_URL }}" \
+          curl --location 'https://hx3cymrjm2.us-east-1.awsapprunner.com/company/spriteai/generate_internal_docs' \
             --header 'Content-Type: application/json' \
             --data '{
-              "githubRepository": "'$GITHUB_REPOSITORY'",
-              "apiKey": "'$API_KEY'",
-              "default_time": 50,
-              "repo_gh_pat": "'$REPO_GH_PAT'"
+                "githubRepository": "team-dev-docs/spriteAI",
+                "apiKey": "'$API_KEY'",
+                "default_time": 50,
+                "repo_gh_pat": "'$REPO_GH_PAT'"
             }'
         env:
           API_KEY: ${{ secrets.API_KEY }}

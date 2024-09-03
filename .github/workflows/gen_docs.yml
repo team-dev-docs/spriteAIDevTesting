@@ -24,7 +24,7 @@ jobs:
           GITHUB_ACTOR="${{ github.actor }}"
           curl -X POST -H "Content-Type: application/json" \
                -H "X-API-KEY: $API_KEY" \
-               -d '{"apiKey": "'$API_KEY'", "repo_gh_pat": "'$REPO_GH_PAT'", "githubRepository": "'$GITHUB_REPOSITORY'"}' \
+               -d '{"apiKey": "'$API_KEY'", "repo_gh_pat": "'$REPO_GH_PAT'", "githubRepository": "'$GITHUB_REPOSITORY'", "default_time": 50}' \
                "${{ secrets.GENERATE_ENDPOINT_URL }}"
         env:
           API_KEY: ${{ secrets.API_KEY }}

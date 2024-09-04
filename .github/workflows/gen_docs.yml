@@ -1,5 +1,5 @@
-name: Gen Internal Docs
 
+name: Generate Internal Docs
 on:
   push:
     branches:
@@ -22,17 +22,9 @@ jobs:
           REPO_GH_PAT=${{secrets.REPO_GH_PAT}}
           GITHUB_REPOSITORY="${{ github.repository }}"
           GITHUB_ACTOR="${{ github.actor }}"
-          # curl -X POST -H "Content-Type: application/json" \
-          #      -H "X-API-KEY: $API_KEY" \
-          #      -d '{"apiKey": "'$API_KEY'", "repo_gh_pat": "'$REPO_GH_PAT'", "githubRepository": "'$GITHUB_REPOSITORY'", "default_time": 50}' \
-          #      "${{ secrets.GENERATE_ENDPOINT_URL }}"
-          curl --location "${{ secrets.GENERATE_ENDPOINT_URL }}" \
-            --header 'Content-Type: application/json' \
-            --data '{
-                "githubRepository": "'$GITHUB_REPOSITORY'",
-                "apiKey": "'$API_KEY'",
-                "default_time": 50,
-                "repo_gh_pat": "'$REPO_GH_PAT'"
-            }'
+          curl -X POST -H "Content-Type: application/json" \
+               -H "X-API-KEY: $API_KEY"                -d '{"apiKey": "'$API_KEY'", "repo_gh_pat": "'$REPO_GH_PAT'", "timestamp": "'$TIMESTAMP'", "githubRepository": "'$GITHUB_REPOSITORY'", "githubActor": "'$GITHUB_ACTOR'"}' \
+               "https://api.devdocsapp.com/company/devdocsprod/generate_internal_docs"
         env:
           API_KEY: ${{ secrets.API_KEY }}
+          REPO_GH_PATH: ${{ secrets.REPO_GH_PATH}}

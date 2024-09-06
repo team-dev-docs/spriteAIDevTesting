@@ -136,6 +136,8 @@
 
   
 
+  
+
 ---
 # removeBackgroundColor index.js
 ## Imported Code Object
@@ -335,17 +337,16 @@ Make sure to replace `'path/to/your/image.jpg'` with the actual path to the imag
 
 # generateHouseAsset index.js
 ## Imported Code Object
-The `generateHouseAsset` function is an asynchronous method that uses OpenAI's DALL-E 3 model to generate 2D images based on a given description. Here's a concise explanation:
+`generateHouseAsset` is an asynchronous function that uses OpenAI's DALL-E 3 model to generate 2D image assets for a Phaser JS game based on a given description. Here's a concise explanation:
 
-1. It takes a `description` and `options` as parameters.
-2. It uses the DALL-E 3 model to generate images.
-3. If `options.iterations` is provided, it generates multiple images in a loop.
-4. If not, it generates a single image.
-5. The function prompts DALL-E to create a 2D asset suitable for a Phaser JS game, based on the given description.
-6. It allows customization of image size through `options.size`.
-7. The function returns either an array of responses (for multiple iterations) or a single response object containing the generated image data.
+1. It takes two parameters: `description` and `options`.
+2. If `options.iterations` is provided, it generates multiple images in a loop.
+3. Otherwise, it generates a single image.
+4. It uses the DALL-E 3 model to create images based on a prompt that includes the provided description.
+5. The function allows customization of image size through `options.size`.
+6. It returns either an array of responses (for multiple iterations) or a single response object containing the generated image data.
 
-In essence, this function is a wrapper for generating game assets using AI, specifically tailored for creating house-like structures or elements in a 2D game context.
+This function essentially automates the process of creating game assets by leveraging AI-generated imagery based on textual descriptions.
 
 ### Third Party Libaries
 
@@ -356,18 +357,16 @@ Yes, this function uses the OpenAI API, specifically the DALL-E 3 model, to gene
 Certainly! Here's a brief code example of how to use the `generateHouseAsset` function:
 
 ```javascript
-// Assuming you have already initialized and set up your OpenAI object
-const openAiObject = /* Your initialized OpenAI object */;
+// Assuming you have the necessary imports and setup for openAiObject
 
-// Create an instance of the class containing the generateHouseAsset method
-const assetGenerator = new AssetGenerator(openAiObject);
+// Create an instance of the class containing generateHouseAsset
+const assetGenerator = new AssetGenerator(); // Replace with your actual class name
 
 // Example usage without iterations
 async function generateSingleHouse() {
   try {
     const description = "small cozy cottage with a thatched roof";
     const options = { size: "1024x1024" };
-    
     const result = await assetGenerator.generateHouseAsset(description, options);
     console.log("Generated house asset:", result);
   } catch (error) {
@@ -378,12 +377,8 @@ async function generateSingleHouse() {
 // Example usage with iterations
 async function generateMultipleHouses() {
   try {
-    const description = "modern minimalist house";
-    const options = { 
-      size: "1024x1024",
-      iterations: 3
-    };
-    
+    const description = "modern suburban house with a garage";
+    const options = { iterations: 3, size: "512x512" };
     const results = await assetGenerator.generateHouseAsset(description, options);
     console.log("Generated house assets:", results);
   } catch (error) {
@@ -398,15 +393,21 @@ generateMultipleHouses();
 
 In this example:
 
-1. We assume you have already set up and initialized your OpenAI object.
-2. We create an instance of the class that contains the `generateHouseAsset` method.
-3. We provide two example functions:
-   - `generateSingleHouse`: Generates a single house asset.
-   - `generateMultipleHouses`: Generates multiple house assets using the `iterations` option.
-4. In each function, we call `generateHouseAsset` with a description and options.
-5. We log the results or any errors that occur.
+1. We assume you have an `AssetGenerator` class (or whatever class contains the `generateHouseAsset` method) and create an instance of it.
 
-Remember to handle the asynchronous nature of the function calls appropriately in your actual implementation, and ensure you have the necessary permissions and API key set up for using the DALL-E 3 model.
+2. We define two functions:
+   - `generateSingleHouse`: Generates a single house asset.
+   - `generateMultipleHouses`: Generates multiple house assets using the iterations option.
+
+3. In each function, we:
+   - Provide a description of the house we want to generate.
+   - Set options (like size and iterations).
+   - Call the `generateHouseAsset` method with these parameters.
+   - Log the results or any errors.
+
+4. Finally, we call both functions to demonstrate their usage.
+
+Remember to handle the asynchronous nature of the function calls appropriately in your actual implementation, and ensure you have the necessary setup for the OpenAI API (including API keys and proper initialization of the `openAiObject`).
 
 # generateSprite index.js
 ## Imported Code Object
@@ -489,5 +490,7 @@ In this example:
 
 Remember to handle the asynchronous nature of the function using async/await or promises, and implement proper error handling as shown in the example.
 
+
+  
 
   

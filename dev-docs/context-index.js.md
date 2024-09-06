@@ -263,15 +263,15 @@ This encoded string can then be used in various ways, such as sending it in API 
 
 # getUniqueColors index.js
 ## Imported Code Object
-The `getUniqueColors` function in this code snippet is an asynchronous function that analyzes an image file to extract and return a list of unique colors present in the image. Here's a concise explanation of its functionality:
+In this code snippet, `getUniqueColors` is an asynchronous function that analyzes an image file and returns an array of unique colors found in that image. Here's a concise explanation of what it does:
 
 1. It reads an image file using the Jimp library.
-2. It scans through every pixel of the image.
-3. For each non-transparent pixel, it converts the RGBA color values to an integer representation.
-4. It adds each unique color (as an integer) to a Set to eliminate duplicates.
-5. Finally, it returns an array of these unique color integers.
+2. It scans every pixel of the image.
+3. For each non-transparent pixel, it converts the RGBA values to an integer representation of the color.
+4. It adds each unique color (as an integer) to a Set, which automatically eliminates duplicates.
+5. Finally, it converts the Set of unique colors back to an array and returns it.
 
-This function is useful for determining the color palette of an image or for color analysis purposes.
+This function essentially extracts all unique colors present in the given image, ignoring fully transparent pixels.
 
 ### Third Party Libaries
 
@@ -284,6 +284,8 @@ Certainly! Here's a brief code example of how to use the `getUniqueColors` funct
 ```javascript
 const Jimp = require('jimp');
 
+// Assuming the getUniqueColors function is defined as you provided
+
 async function main() {
   try {
     const imagePath = 'path/to/your/image.jpg';
@@ -291,43 +293,40 @@ async function main() {
     
     console.log('Number of unique colors:', uniqueColors.length);
     
-    // Print the first 5 unique colors as hex values
-    uniqueColors.slice(0, 5).forEach(colorInt => {
-      const rgba = Jimp.intToRGBA(colorInt);
-      const hex = rgbaToHex(rgba.r, rgba.g, rgba.b);
-      console.log('Color:', hex);
+    // Convert the integer color values back to RGBA
+    const rgbaColors = uniqueColors.map(colorInt => Jimp.intToRGBA(colorInt));
+    
+    console.log('First 5 unique colors (RGBA):');
+    rgbaColors.slice(0, 5).forEach(color => {
+      console.log(`R: ${color.r}, G: ${color.g}, B: ${color.b}, A: ${color.a}`);
     });
   } catch (error) {
     console.error('Error:', error);
   }
 }
 
-// Helper function to convert RGBA to hex
-function rgbaToHex(r, g, b) {
-  return '#' + [r, g, b].map(x => {
-    const hex = x.toString(16);
-    return hex.length === 1 ? '0' + hex : hex;
-  }).join('');
-}
-
-// Run the main function
 main();
 ```
 
 In this example:
 
 1. We import the Jimp library (make sure it's installed: `npm install jimp`).
-2. We define a `main` function to use async/await.
-3. We specify the path to the image file.
-4. We call `getUniqueColors` with the image path.
-5. We print the total number of unique colors found.
-6. We print the first 5 unique colors as hex values.
-7. We use a helper function `rgbaToHex` to convert RGBA values to hex format.
+
+2. We define an async `main` function to use `await` with our asynchronous `getUniqueColors` function.
+
+3. We specify the path to the image we want to analyze.
+
+4. We call `getUniqueColors` with the image path and await its result.
+
+5. We log the total number of unique colors found.
+
+6. We convert the integer color values back to RGBA format using `Jimp.intToRGBA`.
+
+7. We print the first 5 unique colors in RGBA format.
+
 8. Finally, we call the `main` function to execute our code.
 
-Make sure to replace `'path/to/your/image.jpg'` with the actual path to your image file.
-
-This example demonstrates how to use the `getUniqueColors` function and how to work with the returned array of color integers. You can modify this example to suit your specific needs, such as saving the colors to a file, using them for further image processing, or displaying them in a user interface.
+This example demonstrates how to use the `getUniqueColors` function and how to work with the results it returns. You can modify this example to suit your specific needs, such as saving the colors to a file, using them for further image processing, or integrating this functionality into a larger application.
 
 # generateHouseAsset index.js
 ## Imported Code Object

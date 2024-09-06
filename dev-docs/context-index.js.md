@@ -259,15 +259,15 @@ This encoded image string can be used in various ways, such as sending it in API
 
 # getUniqueColors index.js
 ## Imported Code Object
-The `getUniqueColors` function is an asynchronous function that takes an image file path as input and returns an array of unique colors found in the image. Here's a concise explanation of its functionality:
+The `getUniqueColors` function is an asynchronous function that analyzes an image file to extract and return a list of unique colors present in the image. Here's a concise explanation of its functionality:
 
-1. It reads the image using the Jimp library.
-2. It scans through every pixel of the image.
+1. It reads an image file using the Jimp library.
+2. It scans every pixel of the image.
 3. For each non-transparent pixel, it converts the RGBA values to an integer representation of the color.
 4. It adds each unique color (as an integer) to a Set to eliminate duplicates.
-5. Finally, it returns an array of all unique colors found in the image.
+5. Finally, it returns an array of these unique colors.
 
-This function is useful for analyzing the color palette of an image or for color-related image processing tasks.
+This function is useful for color analysis, palette extraction, or any task that requires identifying the distinct colors used in an image.
 
 ### Third Party Libaries
 
@@ -278,16 +278,17 @@ Yes, this function uses the third-party library Jimp (JavaScript Image Manipulat
 Certainly! Here's a brief code example of how to use the `getUniqueColors` function:
 
 ```javascript
+const fs = require('fs').promises;
 const Jimp = require('jimp');
 
-// Assuming getUniqueColors is defined as shown in your provided code
+// Assuming the getUniqueColors function is defined as you provided
 
 async function main() {
   try {
     const imagePath = 'path/to/your/image.jpg';
     const uniqueColors = await getUniqueColors(imagePath);
     
-    console.log('Number of unique colors:', uniqueColors.length);
+    console.log(`Number of unique colors: ${uniqueColors.length}`);
     
     // Convert color integers back to RGBA values
     const rgbaColors = uniqueColors.map(colorInt => Jimp.intToRGBA(colorInt));
@@ -296,6 +297,7 @@ async function main() {
     rgbaColors.slice(0, 5).forEach(color => {
       console.log(`R: ${color.r}, G: ${color.g}, B: ${color.b}, A: ${color.a}`);
     });
+    
   } catch (error) {
     console.error('Error:', error);
   }
@@ -306,7 +308,7 @@ main();
 
 In this example:
 
-1. We import the Jimp library (make sure it's installed via npm).
+1. We import the required modules (`fs.promises` and `Jimp`).
 2. We define an async `main` function to use `await` with our asynchronous `getUniqueColors` function.
 3. We specify the path to the image we want to analyze.
 4. We call `getUniqueColors` with the image path and await its result.
@@ -314,9 +316,11 @@ In this example:
 6. We convert the color integers back to RGBA values using `Jimp.intToRGBA`.
 7. We print the RGBA values of the first 5 unique colors (if available).
 8. We wrap everything in a try-catch block to handle any errors.
-9. Finally, we call the `main` function to run our code.
+9. Finally, we call the `main` function to execute our code.
 
-Make sure to replace `'path/to/your/image.jpg'` with the actual path to the image you want to analyze. This code will give you an idea of how many unique colors are in the image and show you the RGBA values of the first few colors.
+Make sure to replace `'path/to/your/image.jpg'` with the actual path to the image you want to analyze. Also, ensure that you have the `jimp` package installed in your project (`npm install jimp`).
+
+This example demonstrates how to use the `getUniqueColors` function and how to work with the results it provides.
 
 # generateHouseAsset index.js
 ## Imported Code Object

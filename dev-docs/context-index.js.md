@@ -128,6 +128,8 @@
 
   
 
+  
+
 ---
 # removeBackgroundColor index.js
 ## Imported Code Object
@@ -324,17 +326,17 @@ This example demonstrates how to use the `getUniqueColors` function and how to w
 
 # generateHouseAsset index.js
 ## Imported Code Object
-The `generateHouseAsset` function is an asynchronous method that uses the DALL-E 3 model from OpenAI to generate 2D image assets based on a given description. Here's a concise explanation:
+The `generateHouseAsset` function is an asynchronous method that uses OpenAI's DALL-E 3 model to generate 2D images based on a given description. Here's a concise explanation:
 
-1. It takes two parameters: `description` and `options`.
+1. It takes a `description` and `options` as parameters.
 2. It uses the DALL-E 3 model to generate images.
 3. If `options.iterations` is provided, it generates multiple images in a loop.
 4. If not, it generates a single image.
-5. The function constructs a prompt asking for a 2D asset suitable for a Phaser JS game, based on the provided description.
+5. The function prompts DALL-E to create a 2D asset suitable for a Phaser JS game, based on the given description.
 6. It allows customization of image size through `options.size`.
 7. The function returns either an array of responses (for multiple iterations) or a single response object containing the generated image data.
 
-In essence, this function is a wrapper for generating game asset images using AI, with the flexibility to create either single or multiple variations of the requested asset.
+In essence, this function is a wrapper for generating game assets using AI, specifically tailored for creating house-like structures or elements in a 2D game context.
 
 ### Third Party Libaries
 
@@ -342,72 +344,61 @@ Yes, this function uses the OpenAI API, specifically the DALL-E 3 model, to gene
 
 ### Code Example
 
-Certainly! Here's a brief code example of how you might use the `generateHouseAsset` function:
+Certainly! Here's a brief code example of how to use the `generateHouseAsset` function:
 
 ```javascript
-// Assuming you have the necessary imports and OpenAI setup
+// Assuming you have already initialized and set up your OpenAI object
+const openAiObject = /* Your initialized OpenAI object */;
 
-const myAssetGenerator = {
-  generateHouseAsset: async function(description, options) {
-    // ... (the function code you provided)
-  }
-};
+// Create an instance of the class containing the generateHouseAsset method
+const assetGenerator = new AssetGenerator(openAiObject);
 
-// Example usage:
-async function generateAndUseAsset() {
+// Example usage without iterations
+async function generateSingleHouse() {
   try {
-    // Generate a single house asset
-    const singleHouseResponse = await myAssetGenerator.generateHouseAsset("cozy cottage with a red roof", {
-      size: "1024x1024"
-    });
-    console.log("Single house asset:", singleHouseResponse);
-
-    // Generate multiple iterations of a house asset
-    const multipleHousesResponse = await myAssetGenerator.generateHouseAsset("modern minimalist house", {
-      size: "512x512",
-      iterations: 3
-    });
-    console.log("Multiple house assets:", multipleHousesResponse);
-
-    // You can then use these responses to work with the generated images
-    // For example, you might save them, display them, or use them in your Phaser game
-
+    const description = "small cozy cottage with a thatched roof";
+    const options = { size: "1024x1024" };
+    
+    const result = await assetGenerator.generateHouseAsset(description, options);
+    console.log("Generated house asset:", result);
   } catch (error) {
     console.error("Error generating house asset:", error);
   }
 }
 
-// Call the function
-generateAndUseAsset();
+// Example usage with iterations
+async function generateMultipleHouses() {
+  try {
+    const description = "modern minimalist house";
+    const options = { 
+      size: "1024x1024",
+      iterations: 3
+    };
+    
+    const results = await assetGenerator.generateHouseAsset(description, options);
+    console.log("Generated house assets:", results);
+  } catch (error) {
+    console.error("Error generating house assets:", error);
+  }
+}
+
+// Call the functions
+generateSingleHouse();
+generateMultipleHouses();
 ```
 
 In this example:
 
-1. We're assuming that the `generateHouseAsset` function is a method of an object (here named `myAssetGenerator`).
+1. We assume you have already set up and initialized your OpenAI object.
+2. We create an instance of the class that contains the `generateHouseAsset` method.
+3. We provide two example functions:
+   - `generateSingleHouse`: Generates a single house asset.
+   - `generateMultipleHouses`: Generates multiple house assets using the `iterations` option.
+4. In each function, we call `generateHouseAsset` with a description and options.
+5. We log the results or any errors that occur.
 
-2. We create an async function `generateAndUseAsset` to demonstrate two use cases:
-   - Generating a single house asset (a cozy cottage)
-   - Generating multiple iterations of a house asset (a modern minimalist house)
+Remember to handle the asynchronous nature of the function calls appropriately in your actual implementation, and ensure you have the necessary permissions and API key set up for using the DALL-E 3 model.
 
-3. For the single asset, we don't specify `iterations`, so it will return a single response.
-
-4. For multiple assets, we specify `iterations: 3`, so it will return an array of 3 responses.
-
-5. We use try/catch to handle any potential errors.
-
-6. After generating the assets, you would typically do something with the responses, such as saving the images, displaying them, or using them in your Phaser game.
-
-Remember to replace `openAiObject` in the original function with your actual OpenAI client instance, and ensure you have the necessary API key and permissions set up to use the DALL-E 3 model.
-
-
-  
-
-  
-
-  
-
-  
----
 # generateSprite index.js
 ## Imported Code Object
 The `generateSprite` function in this code snippet is an asynchronous function that generates sprite images using AI models and processes them for use in a game or application. Here's a concise explanation of its main functionalities:
@@ -495,5 +486,7 @@ In this example:
 
 Remember to replace `SpriteGenerator` with the actual name of your class or module that contains the `generateSprite` method. Also, ensure that you have all the necessary dependencies (like OpenAI, axios, sharp, etc.) installed and properly imported in your actual implementation.
 
+
+  
 
   

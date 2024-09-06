@@ -231,7 +231,7 @@ export const sprite = {
     },
     async generateHouseAsset(description, options) {
         const dalle3 = openAiObject.images
-      //adds some stuff!!!! ok ok
+      //adds some stuff!!!! ok ok yeash
         if(options.iterations) {
           let i = 0;
           let iterations = []

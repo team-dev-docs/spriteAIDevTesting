@@ -1,5 +1,6 @@
 {
   "gitHubApp": {
     "workflows": ["generateDocs"]
-  }
+  },
+  "branch": "pull_request_please"
 }
